@@ -4,7 +4,9 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.2.*"
+		"laravel/framework": "4.2.*",
+		"barryvdh/laravel-debugbar": "1.x",
+		"paste/pre": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
@@ -13,9 +15,7 @@
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
-			"app/tests/TestCase.php",
-			"barryvdh/laravel-debugbar",
-			"paste/pre"
+			"app/tests/TestCase.php"
 		]
 	},
 	"scripts": {
