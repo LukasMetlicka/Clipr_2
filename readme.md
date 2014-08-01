@@ -1,25 +1,9 @@
-## Laravel PHP Framework
+#Clipr.
+##The first online clip solution.
+Ever been helping a friend debug his code and wish you could access those little snippets of code you keep in a .txt file on your desktop so you don't have to spend so much time typing?  An awnser to your problem has come.  Clipr utilizes login authentication and several databases so that you can easily and securely create clips that can be accessed anywhere.  Clips use a hashtag system to organize clips, so that they can be easily grouped for later use.  Your clips can be viewed on your home page, which displays your clips for ease of copying.  Additionally, the home page includes a hotbar, where using ⌘1, ⌘2, and ⌘3 (windows key on windows machines) will copy that clip's contents to your computer's clipboard.
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
-
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
-
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
-
-## Official Documentation
-
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
-
-### Contributing To Laravel
-
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+##Dependencies:
+ Php's Laravel framework
+ Google's Polymer (http://www.polymer-project.org/)
+ Paste/pre (https://github.com/paste/Pre.php)
+ the Laravel Debugbar (https://github.com/barryvdh/laravel-debugbar)

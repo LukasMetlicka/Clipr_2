@@ -1,4 +1,4 @@
-@extends _master
+@extends("_master")
 @section('title')
 Login to Clipr
 @stop

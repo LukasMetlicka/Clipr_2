@@ -7,8 +7,16 @@ class hashtagController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	 
+	 public function __construct( ) {
+		
+		$this->beforeFilter("auth");
+		 
+	 }
+	 
 	public function index()
 	{
+		$tags = Tag::all()->where()
 		return View::make('hashtag_index');
 	}
 
@@ -32,7 +40,11 @@ class hashtagController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$tags = Tag::all()->where( $id, "=", "tag" )->get("id");
+		$filePivot = DB::table("file_tag")->where( $tags, "=", "tag_id" )->get("file_id");
+		$file = File::all()->where( $filePivot, "=", "id" );
+		
+		return View::make('tag_list')->with($thisTag);
 	}
 
 
