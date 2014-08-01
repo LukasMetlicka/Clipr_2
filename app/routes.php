@@ -62,7 +62,7 @@ Route::get( '/logout', function() {
 
 
 //Signup
-Route::get('/signup' array('before' => 'guest', function(){
+Route::get('/signup', array('before' => 'guest', function(){
 	
 	return View::make('signup');
 	
@@ -135,3 +135,7 @@ Route::post('/edit/{clipid}', array( 'before' => 'csrf', function() {
 	
 	
 }));
+
+
+Route::get("/tags","hashtagController@index");
+Route::get("/tag{id}","hashtagController@show");
