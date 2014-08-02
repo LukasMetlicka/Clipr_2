@@ -28,10 +28,7 @@ class CreateFileTagTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('file_tag', function(Blueprint $table)
-		{
-			//
-		});
+		Schema::drop("file_tag");
 	}
 
 }

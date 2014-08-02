@@ -21,8 +21,9 @@ Route::get('/', function()
 
 //Home page
 Route::get('/home', array('before' => 'auth', function(){
-	
-	return View::make('home');
+
+	$userId = Auth::user()->getAuthIdentifier();	
+	return View::make('home')->with($userId);
 	
 }));
 
@@ -40,7 +41,7 @@ Route::post('/login', array('before' => "csrf",  function()
 	$credentials = Input::only('email', 'password' );
 	
 	if ( Auth::attempt($credentials, $remember = true )) {
-		return Redirect::intended('/home')->with('flash', 'Greetings, Friend' );
+		return Redirect::intended('/home')->with('flash_message', 'Greetings, Friend' );
 	}
 	else {
 		return  Redirect::to('/login')->with('flash', 'Not so fast there bucko.  Lets try that again.');
@@ -76,14 +77,13 @@ Route::post( '/signup', array( 'before' => 'csrf', function(){
 	$user->email = Input::get('email');
 	$user->password = Hash::make(Input::get('password'));
 	$user->username = Input::get('username');
-	$user->ip = Input::get('ip');
 	
 	try {
 		$user->save();
 	}
 	catch ( Exception $e ) {
 		return Redirect::to('/signup')
-							->with('flash',"I'm not sure I got all of that partner. would you mind repeating yourself?")
+							->with('flash_message',"I'm not sure I got all of that partner. would you mind repeating yourself?")
 							->withInput();
 	}
 	
@@ -95,7 +95,8 @@ Route::post( '/signup', array( 'before' => 'csrf', function(){
 
 //Add Clip
 Route::get('/add', array('before' => 'auth', function(){
-
+	
+	
 	return View::make('add');
 	
 }));
@@ -104,9 +105,12 @@ Route::get('/add', array('before' => 'auth', function(){
 //Add Clip Post
 Route::post('/add', array('before' => 'csrf', function(){
 	
+	$userId = Auth::user()->getAuthIdentifier();
 	$clip = new Clip;
 	$clip->text = Input::get('text');
 	$clip->user = $user->username;
+	
+	
 	
 	try {
 		$clip->save();
@@ -139,3 +143,6 @@ Route::post('/edit/{clipid}', array( 'before' => 'csrf', function() {
 
 Route::get("/tags","hashtagController@index");
 Route::get("/tag{id}","hashtagController@show");
+
+
+

@@ -19,7 +19,9 @@
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
 
-        
+		@if(Session::get('flash_message'))
+			<div class='flash-message'>{{ Session::get('flash_message') }}</div>
+		@endif
 		<core-header-panel>
 			<core-toolbar>
 			

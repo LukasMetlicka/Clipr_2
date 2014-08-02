@@ -17,7 +17,7 @@ class MakeTagsTable extends Migration {
 			$table->increments("id")->unsigned();
 			$table->timestamps();
 			
-			$table->string("tag");`
+			$table->string("tag");
 			
 		});
 	}
@@ -29,7 +29,8 @@ class MakeTagsTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop("tags");
+
 	}
 
 }

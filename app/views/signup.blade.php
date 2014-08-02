@@ -11,17 +11,14 @@ Sign up for Clipr
 	{{ Form::open(array('url' => '/signup', 'method' => 'POST')) }}
 		<div class="content">
 			<div class="email">
-				<h2>Email:</h2>
-				{{ Form::label("email", "new user's email") }}
+				{{ Form::label("email", "Email:") }}
 				{{ Form::text('email') }}
 			</div>
 			<div class="username">
-				{{ Form::label("username", "new user's username") }}
+				{{ Form::label("username", "Username:") }}
 				{{ Form::text("tags") }}
 			</div>
-			<div class="password">
-				<h2>Email:</h2>
-				{{ Form::label("password", "new user's password") }}
+			<div class="password">				{{ Form::label("password", "Password:") }}
 				{{ Form::password('password') }}
 			</div>
 			<div class="submit">

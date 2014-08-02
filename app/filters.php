@@ -90,8 +90,3 @@ Route::filter('csrf', function()
 });
 
 
-Route::filter( "userId", function() {
-
-	
-	
-})
