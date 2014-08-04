@@ -21,7 +21,7 @@ class MakeUsersTable extends Migration {
 			$table->string('password');
 			$table->string('email');
 			
-		})
+		});
 	}
 
 	/**
