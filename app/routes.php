@@ -22,9 +22,17 @@ Route::get('/', function()
 //Home page
 Route::get('/home', array('before' => 'auth', function(){
 
-	$userId = Auth::user()->getAuthIdentifier();	
-	return View::make('home')->with($userId);
+	$id = Auth::id();
+	$userData = User::find( $id );
+	$userName = $userData["username"];
+	$userEmail = $userData["email"];
+	## Get all files attached to this user arranged by date added
+	## Get all tags attached to the files
 	
+	
+	return View::make('home')->with( "id", $id )
+							 ->with("userName", $userName )
+							 ->with("userEmail", $userEmail );	##pass the files w/ tags as arrays within arrays to the view 
 }));
 
 
@@ -38,13 +46,14 @@ Route::get('/login', array( 'before' => 'guest', function()
 //Login Post
 Route::post('/login', array('before' => "csrf",  function()
 {
-	$credentials = Input::only('email', 'password' );
+	$credentials = Input::only("username", "password");
 	
-	if ( Auth::attempt($credentials, $remember = true )) {
+	if ( Auth::attempt($credentials)) {
+		
 		return Redirect::intended('/home')->with('flash_message', 'Greetings, Friend' );
 	}
 	else {
-		return  Redirect::to('/login')->with('flash', 'Not so fast there bucko.  Lets try that again.');
+		return  Redirect::to('/login')->with('flash_message', 'Not so fast there bucko.  Lets try that again.');
 	}
 	
 	return Redirect::to('login');
@@ -73,10 +82,12 @@ Route::get('/signup', array('before' => 'guest', function(){
 //Signup post
 Route::post( '/signup', array( 'before' => 'csrf', function(){
 
-	$user = new User;
+	$user = new user;
 	$user->email = Input::get('email');
 	$user->password = Hash::make(Input::get('password'));
 	$user->username = Input::get('username');
+	
+	
 	
 	try {
 		$user->save();
@@ -105,11 +116,6 @@ Route::get('/add', array('before' => 'auth', function(){
 //Add Clip Post
 Route::post('/add', array('before' => 'csrf', function(){
 	
-	$userId = Auth::user()->getAuthIdentifier();
-	$clip = new Clip;
-	$clip->text = Input::get('text');
-	$clip->user = $user->username;
-	
 	
 	
 	try {
@@ -128,7 +134,18 @@ Route::post('/add', array('before' => 'csrf', function(){
 //Edit Clip
 Route::get('/edit{clipid}', array('before' => 'auth', function(){
 	
+	$id = Auth::id();
+	$userFileIds = DB::table("file_user")->where( "user_id", "=", $id )->get();
 	
+	if ( $userFileIds == clipid ) {
+		
+		$fileId = DB::table("file_user")->where( "file_id", "=", $clipid );
+		$file = DB::table( "files" )->where( "id", "=", $fileId )->pluck("text");
+		
+	}
+	else {
+		return Redirect::to('/home')->with("flash_message", "Sorry, But I don't think you have that clip");
+	}
 	
 }));
 

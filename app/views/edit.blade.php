@@ -8,18 +8,18 @@ Edit clip
 
 @section('body')
 	
-	{{ Form::open(array('url' => '/add', 'method' => 'POST')) }}
+	{{ Form::open(['method' => 'put', 'action' => ['ClipController@update', $file->id]]) }}
 		<div class="content">
 			<div class="text">
 				{{ Form::label("clip_text", "the content of the clip") }}
-				{{ Form::text('text') }}
+				{{ Form::text('text', $file->text ) }}
 			</div>
 			<div class="tags">
 				{{ Form::label("clip_tags", "tags to sort through clips more easily!") }}
-				{{ Form::text("tags") }}
+				{{ Form::text("tags", $file->pivot->tag ) }}
 			</div>
 			<div class="submit">
-				{{ Form::submit('Submit!', array('class' => 'name')); }}
+				{{ Form::submit('Submit!', array('class' => 'submit')); }}
 			</div>
 		</div>
 	{{ Form::close() }}

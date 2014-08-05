@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"barryvdh/laravel-debugbar": "1.x",
-		"paste/pre": "dev-master"
+		"paste/pre": "dev-master",
+		"way/generators": "2.*"
 	},
 	"autoload": {
 		"classmap": [

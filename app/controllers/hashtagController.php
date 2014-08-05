@@ -16,7 +16,7 @@ class hashtagController extends \BaseController {
 	 
 	public function index()
 	{
-		$tags = Tag::all()->where()
+		$tags = Tag::all(); 
 		return View::make('hashtag_index');
 	}
 
@@ -28,7 +28,7 @@ class hashtagController extends \BaseController {
 	 */
 	public function store()
 	{
-		DB::insert()
+		DB::insert();
 	}
 
 

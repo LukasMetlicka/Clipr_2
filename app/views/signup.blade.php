@@ -16,9 +16,10 @@ Sign up for Clipr
 			</div>
 			<div class="username">
 				{{ Form::label("username", "Username:") }}
-				{{ Form::text("tags") }}
+				{{ Form::text("username") }}
 			</div>
-			<div class="password">				{{ Form::label("password", "Password:") }}
+			<div class="password">				
+				{{ Form::label("password", "Password:") }}
 				{{ Form::password('password') }}
 			</div>
 			<div class="submit">
