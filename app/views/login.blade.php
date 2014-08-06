@@ -11,13 +11,11 @@ Login to Clipr
 	{{ Form::open(array('url' => '/login', 'method' => 'POST')) }}
 		<div class="content">
 			<div class="username">
-				<h2>Username</h2>
-				{{ Form::label("username", "the user's username") }}
+				<h2>Username:</h2>
 				{{ Form::text('username') }}
 			</div>
 			<div class="password">
 				<h2>Password:</h2>
-				{{ Form::label("password", "super-secret password") }}
 				{{ Form::password("password") }}
 			</div>
 			<div class="submit">

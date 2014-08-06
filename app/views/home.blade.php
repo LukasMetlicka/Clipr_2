@@ -1,2 +1,9 @@
 @extends("_master")
-<h1> Hello there {{ $id }}! Your username is {{ $userName }}</h1>
+
+@section("title")
+Home
+@stop
+
+@section("head")
+<link rel="stylesheet" type="text/css" href="styles/home.css">
+@stop

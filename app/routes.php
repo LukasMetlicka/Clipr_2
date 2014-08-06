@@ -28,11 +28,14 @@ Route::get('/home', array('before' => 'auth', function(){
 	$userEmail = $userData["email"];
 	## Get all files attached to this user arranged by date added
 	## Get all tags attached to the files
+	$files = Auth::user()->files;
+	
 	
 	
 	return View::make('home')->with( "id", $id )
 							 ->with("userName", $userName )
-							 ->with("userEmail", $userEmail );	##pass the files w/ tags as arrays within arrays to the view 
+							 ->with("userEmail", $userEmail )	##  Planned to do more with this, id and username
+							 ->with( "files", $files );
 }));
 
 
@@ -82,12 +85,26 @@ Route::get('/signup', array('before' => 'guest', function(){
 //Signup post
 Route::post( '/signup', array( 'before' => 'csrf', function(){
 
+	$rules = array(
+			'email' => 'required|email|unique:email',
+			'username' => 'required|unique:username',
+			'password' => 'required|min:4'	
+	);
+	
+	$validator = Validator::make(Input::all(), $rules);
+	
+	if($validator->fails()) {
+
+			return Redirect::to('/signup')
+				->with('flash_message', 'Sorry Frendo. Please Check these issues:')
+				->withInput()
+				->withErrors($validator);
+	}
+	
 	$user = new user;
 	$user->email = Input::get('email');
 	$user->password = Hash::make(Input::get('password'));
 	$user->username = Input::get('username');
-	
-	
 	
 	try {
 		$user->save();
@@ -161,6 +178,9 @@ Route::post('/edit/{clipid}', array( 'before' => 'csrf', function() {
 Route::get("/tags","hashtagController@index");
 Route::get("/tag{id}","hashtagController@show");
 
+Route::get("/add", "ClipController@add");
+Route::post("/add", "ClipController@store");
+
 
 Route::get('mysql-test', function() {
 
@@ -171,3 +191,36 @@ Route::get('mysql-test', function() {
     print_r($results);
 
 });
+
+
+function findTagId( $stringOfTags ) {
+	
+ 	$files = Auth::user()->files; 
+	
+	
+	
+	$tagArray = explode(" ", $stringOfTags);
+	
+	foreach ( $files as $file ) {
+		$fileTags = $file->tags;
+		
+		foreach( $fileTags as $tagInFile ) {
+			if ( array_search( $tagArray, $tagInFile ) ) {
+				
+				return $existingTag->id;
+			}
+			else {
+					$newTag = new Tag();
+					$newTag->tag = $tagArray;
+					$newTag->save();
+					
+					return $newTag->id;
+			}
+		}
+		
+		
+	}
+
+}
+
+

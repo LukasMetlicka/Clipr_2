@@ -17,41 +17,22 @@ class ClipController extends \BaseController {
 	public function store()
 	{
 		$id = Auth::id();
-		$clip = new Clip;
-		$clip->text = Input::get('text');
-		$clip->user = $user->username;
-	
-		public function parseTags( $tagString ) {
 		
-			$tagArray = explode(" ",  $tagString );
-			$tagArrayCount = count( $tagArray );
+		$file = Input::get("text");
+		$tagString = Input::get("tags");
 		
-			for ( $i = 0; $i < $tagArrayCount; $i++ ) {
-			
-				if ( substr($tagArray[$i], 0, 1 ) === "#" ) {
-					
-					$check = checkForHashtag( $i );
-					
-					if ( $check == False ) {
-						
-						$tag = new Tag;
-						$tag->tag = $tagArray[$i];
-						
-					}	
-				}
-			
-			}
-	
-		}
 		
-		try {
-			$clip->save();
-		}
-		catch ( Exception $e ) {
-			return Redirect::to('/add')->with('flash',"I'm sorry Dave, I can't let you do that");
-		}
+		$tagId = findTagId( $tagString );
 		
-		return Redirect::to('/home')->with('flash','Clip added!');
+		$newFile = new Models\File();
+		$newFile->text = $file;
+		$newFile->save();
+		
+		$fileId = $newFile->id;
+		
+		return Redirect::to("/home")->with("flash_message", "Your new clip with the tag ".$tagId." has been created" );
+				
+		
 		
 	}
 
@@ -92,5 +73,6 @@ class ClipController extends \BaseController {
 	{
 		//
 	}
-
+	
 }
+
