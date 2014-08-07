@@ -107,33 +107,6 @@ Route::post( '/signup', array( 'before' => 'csrf', function(){
 }));
 
 
-//Add Clip
-Route::get('/add', array('before' => 'auth', function(){
-	
-	
-	return View::make('add');
-	
-}));
-
-
-//Add Clip Post
-Route::post('/add', array('before' => 'csrf', function(){
-	
-	
-	
-	try {
-		$clip->save();
-	}
-	catch ( Exception $e ) {
-		return Redirect::to('/add')->with('flash',"I'm sorry Dave, I can't let you do that");
-	}
-	
-	return Redirect::to('/home')->with('flash','Clip added!');
-	
-	
-}));
-
-
 //Edit Clip
 Route::get('/edit{clipid}', array('before' => 'auth', function(){
 	

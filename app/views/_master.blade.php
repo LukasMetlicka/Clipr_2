@@ -20,7 +20,6 @@
 			<ul>
 				<li><h1><a href="/home">Home</a></h1></li>
 				<li><h1><a href="/add">Add a Clip</a></h1></li>
-				<li><h1><a href="/tags">All of my Tags</a></h1></li>
 				<li id="logout"><h1><a href="/logout">Log Out</a></h1></li>
 			</ul>
 		</div>
