@@ -23,7 +23,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'clipr',
+			'database'  => 'clipr_2',
 			'username'  => 'root',
 			'password'  => 'root',
 			'charset'   => 'utf8',

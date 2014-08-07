@@ -56,7 +56,7 @@ return array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',
-			'database'  => 'clipr',
+			'database'  => 'clipr_2',
 			'username'  => 'root',
 			'password'  => 'root',
 			'charset'   => 'utf8',

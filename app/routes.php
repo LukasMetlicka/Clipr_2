@@ -85,21 +85,7 @@ Route::get('/signup', array('before' => 'guest', function(){
 //Signup post
 Route::post( '/signup', array( 'before' => 'csrf', function(){
 
-	$rules = array(
-			'email' => 'required|email|unique:email',
-			'username' => 'required|unique:username',
-			'password' => 'required|min:4'	
-	);
 	
-	$validator = Validator::make(Input::all(), $rules);
-	
-	if($validator->fails()) {
-
-			return Redirect::to('/signup')
-				->with('flash_message', 'Sorry Frendo. Please Check these issues:')
-				->withInput()
-				->withErrors($validator);
-	}
 	
 	$user = new user;
 	$user->email = Input::get('email');
