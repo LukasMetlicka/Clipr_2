@@ -31,7 +31,7 @@ Route::get('/home', array('before' => 'auth', function(){
 	$userEmail = $userData["email"];
 	## Get all files attached to this user arranged by date added
 	## Get all tags attached to the files
-	$files = Auth::user()->clips;
+	$files = DB::table("clips")->lists("text");
 	
 	
 	
