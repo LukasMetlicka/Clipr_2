@@ -14,7 +14,8 @@ class MakeTagsTable extends Migration {
 	{
 		Schema::create('tags', function($table) {
 			
-			$table->increments("id")->unsigned();
+			$table->increments("id");
+			$table->integer("tag_id");
 			$table->timestamps();
 			
 			$table->string("tag");

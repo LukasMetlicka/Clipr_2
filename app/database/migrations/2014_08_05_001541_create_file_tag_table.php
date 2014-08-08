@@ -12,11 +12,11 @@ class CreateFileTagTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('file_tag', function(Blueprint $table)
+		Schema::create('clip_tag', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('file_id')->unsigned()->index();
-			$table->foreign('file_id')->references('id')->on('files')->onDelete('cascade');
+			$table->integer('clip_id')->unsigned()->index();
+			$table->foreign('clip_id')->references('id')->on('clips')->onDelete('cascade');
 			$table->integer('tag_id')->unsigned()->index();
 			$table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
 			$table->timestamps();
@@ -31,7 +31,7 @@ class CreateFileTagTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('file_tag');
+		Schema::drop('clip_tag');
 	}
 
 }

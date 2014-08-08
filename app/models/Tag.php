@@ -2,7 +2,7 @@
 
 class Tag extends \Eloquent {
 	protected $fillable = [];
-	public function files() {
-		return $this->belongsToMany('File');
+	public function clips() {
+		return $this->belongsToMany('Clip');
 	}
 }

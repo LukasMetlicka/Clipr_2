@@ -14,12 +14,14 @@ class MakeUsersTable extends Migration {
 	{
 		Schema::create('users', function($table) {
 		
-			$table->increments('id')->unsigned();
+			$table->increments('id');
 			$table->timestamps();
 			
 			$table->string('username');
+			$table->integer("user_id")->unsigned();
 			$table->string('password');
 			$table->string('email');
+			$table->boolean('remember_token');
 			
 		});
 	}

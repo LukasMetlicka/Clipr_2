@@ -12,9 +12,10 @@ class MakeFilesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('files', function($table) {
+		Schema::create('clips', function($table) {
 			
-			$table->increments('id')->unsigned();
+			$table->increments('id');
+			$table->integer("clip_id")->unsigned();
 			$table->timestamps();
 			
 			$table->longText("text");
@@ -29,7 +30,7 @@ class MakeFilesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop("files");
+		Schema::drop("clips");
 	}
 
 }

@@ -19,7 +19,7 @@
 				{{ Form::close() }}
 			</div>
 			<div class="login">
-				{{ Form::open(array('url' => '/login', 'method' => 'POST')) }}
+				{{ Form::open(array('url' => '/login', 'method' => 'GET')) }}
 			
 					{{ Form::submit('Login', array('class' => 'login')); }}
 				

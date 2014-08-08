@@ -12,11 +12,11 @@ class CreateFileUserTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('file_user', function(Blueprint $table)
+		Schema::create('clip_user', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('file_id')->unsigned()->index();
-			$table->foreign('file_id')->references('id')->on('files')->onDelete('cascade');
+			$table->integer('clip_id')->unsigned()->index();
+			$table->foreign('clip_id')->references('id')->on('clips')->onDelete('cascade');
 			$table->integer('user_id')->unsigned()->index();
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->timestamps();
@@ -31,7 +31,7 @@ class CreateFileUserTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('file_user');
+		Schema::drop('clip_user');
 	}
 
 }

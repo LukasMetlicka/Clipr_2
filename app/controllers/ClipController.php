@@ -16,21 +16,24 @@ class ClipController extends \BaseController {
 	 */
 	public function store()
 	{
-		$id = Auth::id();
+		$id = Auth::user();
 		
 		$file = Input::get("text");
 		$tagString = Input::get("tags");
 		
 		
-		$tagId = findTagId( $tagString );
 		
-		$newFile = new Models\File();
+		
+		$newFile = new Clip();
 		$newFile->text = $file;
+		//$newFile->tag()->associate($tagId);
 		$newFile->save();
 		
 		$fileId = $newFile->id;
 		
-		return Redirect::to("/home")->with("flash_message", "Your new clip with the tag ".$tagId." has been created" );
+		//$tagId = findTagId( $tagString );
+		
+		return Redirect::to("/home")->with("flash_message", "Your new clip has been created" );
 				
 		
 		

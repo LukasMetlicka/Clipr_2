@@ -14,7 +14,10 @@
 
 //Landing Page
 Route::get('/', function()
-{
+{	
+	if ( Auth::check()) {
+		return Redirect::to("home");
+	}
 	return View::make('landingpage');
 });
 
@@ -28,7 +31,7 @@ Route::get('/home', array('before' => 'auth', function(){
 	$userEmail = $userData["email"];
 	## Get all files attached to this user arranged by date added
 	## Get all tags attached to the files
-	$files = Auth::user()->files;
+	$files = Auth::user()->clips;
 	
 	
 	
@@ -154,13 +157,14 @@ Route::get('mysql-test', function() {
 
 function findTagId( $stringOfTags ) {
 	
- 	$files = Auth::user()->files; 
 	
-	
+ 	$uid = Auth::user()->id;
+ 	$files = Auth::user()->clips()->get();
+ 	
+ 	
 	
 	$tagArray = explode(" ", $stringOfTags);
-	
-	foreach ( $files as $file ) {
+	foreach ( $items as $item ) {
 		$fileTags = $file->tags;
 		
 		foreach( $fileTags as $tagInFile ) {
@@ -171,6 +175,7 @@ function findTagId( $stringOfTags ) {
 			else {
 					$newTag = new Tag();
 					$newTag->tag = $tagArray;
+					$newTag->clip()->associate($newFile);
 					$newTag->save();
 					
 					return $newTag->id;
